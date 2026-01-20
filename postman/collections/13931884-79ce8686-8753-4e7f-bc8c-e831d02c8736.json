@@ -2285,7 +2285,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"ecom\",\n    \"card\": {\n        \"number\": \"4111111111111111\",\n        \"cvv\": \"123\",\n        \"expiry\": \"12/25\",\n        \"holder\": \"JOHN DOE\"\n    },\n    \"payer\": {\n        \"userIp\": \"188.11.55.10\",\n        \"customerName\": \"John Doe\",\n        \"phone\": \"+3734343434\",\n        \"email\": \"email@mail.ru\",\n        \"fingerprint\": \"device_id\"\n    }\n}",
+							"raw": "{\n    \"method\": \"az_ecom\",\n    \"card\": {\n        \"number\": \"4111111111111111\",\n        \"cvv\": \"123\",\n        \"expiry\": \"12/25\",\n        \"holder\": \"JOHN DOE\"\n    },\n    \"payer\": {\n        \"userIp\": \"188.11.55.10\",\n        \"customerName\": \"John Doe\",\n        \"phone\": \"+3734343434\",\n        \"email\": \"email@mail.ru\",\n        \"fingerprint\": \"device_id\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2293,7 +2293,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v2/orders/a71de0e7d-b38f-4c63-9116-cf0e46390bc2g/payments",
+							"raw": "{{baseUrl}}/api/v2/orders/aefe805d8-939d-4138-b93e-b852a92f2cfcg/payments",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -2301,7 +2301,7 @@
 								"api",
 								"v2",
 								"orders",
-								"a71de0e7d-b38f-4c63-9116-cf0e46390bc2g",
+								"aefe805d8-939d-4138-b93e-b852a92f2cfcg",
 								"payments"
 							]
 						},

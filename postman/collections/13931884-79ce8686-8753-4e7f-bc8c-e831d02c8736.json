@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"orderId\": \"yweyh2sdj2s3sss2t2ssest\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 23,\n    \"currency\": \"AZN\",\n    \"method\": \"az_ecom\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n    \"payer\": {\n        \"userId\": \"u-yes4ss32ssrыss2s3swg\",\n        \"userIp\": \"188.11.55.10\",\n        \"customerName\": \"John Doe\",\n        \"phone\": \"+3734343434\",\n        \"email\": \"email@mail.ru\",\n        \"fingerprint\":\"device_id\",\n        \"type\": \"trusted\",\n        \"payments\": {\n            \"successful\": 5,\n            \"expired\": 1\n        }\n    }\n}",
+							"raw": "{\n    \"orderId\": \"yweyh2sdj2ыфвs3sss2t2ssest\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 29,\n    \"currency\": \"AZN\",\n    \"method\": \"az_ecom\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n     \"card\": {\n        \"number\": \"4111111111111111\",\n        \"cvv\": \"123\",\n        \"expiry\": \"12/25\",\n        \"holder\": \"JOHN DOE\"\n    },\n    \"payer\": {\n        \"userIp\": \"188.11.55.10\",\n        \"customerName\": \"John Doe\",\n        \"phone\": \"+3734343434\",\n        \"email\": \"email@mail.ru\",\n        \"fingerprint\": \"device_id\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"

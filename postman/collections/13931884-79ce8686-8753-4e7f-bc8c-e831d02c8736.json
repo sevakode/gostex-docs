@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"orderId\": \"yweyh2sdj2ыфвs3sss2t2ssest\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 29,\n    \"currency\": \"AZN\",\n    \"method\": \"az_ecom\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n    \"payer\": {\n        \"userId\": \"u-40s95\"\n    }\n}",
+							"raw": "{\n    \"orderId\": \"yweyh2sdj2ыфвs3dsss2t2ssest\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 2234,\n    \"currency\": \"RUB\",\n    \"method\": \"m2alfa\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n    \"payer\": {\n        \"userId\": \"u-40s95\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"

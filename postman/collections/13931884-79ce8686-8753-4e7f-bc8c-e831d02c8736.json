@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6dfd3f8d-a3a8-43f3-8dea-e0fcd6193213",
+				"id": "e7cfa8ea-0d4e-4dac-aa6c-6db89f1af40f",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2454,7 +2454,7 @@
 					"if (fullDomain) {",
 					"    // Убираем префикс \"docs.\" (замени на свой)",
 					"    let cleanDomain = fullDomain.replace(/^docs\\./, \"\");",
-					"    pm.collectionVariables.set(\"custom_domain\", cleanDomain);",
+					"    pm.collectionVariables.set(\"baseUrl\", cleanDomain);",
 					"} else {",
 					"    console.log(\"Переменная domain не найдена!\");",
 					"}",
@@ -2492,7 +2492,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "64523d26-861f-45a5-be7b-f1178daf5ad0",
+				"id": "76e3f826-f029-47b3-9f43-900aa25d047f",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

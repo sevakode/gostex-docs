@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "139beb92-de2b-4a45-98df-2b5da1e6d1fa",
+				"id": "ffd2bbb1-4c18-4bc7-b86e-a4a79a01bcb2",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2448,16 +2448,6 @@
 					"let rawBody = pm.request.body.raw;",
 					"let body = pm.variables.replaceIn(rawBody);",
 					"",
-					"// Получаем домен из переменных коллекции (или окружения)",
-					"",
-					"",
-					"if (fullDomain) {",
-					"    // Убираем префикс \"docs.\" (замени на свой)",
-					"    let cleanDomain = fullDomain.replace(/^docs\\./, \"\");",
-					"    pm.collectionVariables.set(\"baseUrl\", cleanDomain);",
-					"} else {",
-					"    console.log(\"Переменная domain не найдена!\");",
-					"}",
 					"// Проверим, что тело запроса не пустое и является строкой",
 					"if (!body) {",
 					"    postman.setNextRequest(null); // Остановить выполнение запроса",
@@ -2492,7 +2482,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "553d98ed-763d-4e71-a6bb-fa6b28b6f223",
+				"id": "5ff69586-efab-4b74-b5ce-61d1de76569a",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

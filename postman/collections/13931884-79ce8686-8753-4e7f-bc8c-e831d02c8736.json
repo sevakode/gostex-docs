@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "76419dd4-725e-49b0-be72-54acd0fe3bc0",
+				"id": "b6c9abb8-b33c-462b-8409-9b8c342cbd72",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2456,7 +2456,7 @@
 					"",
 					"console.log(\"Domain:\", domain); // проверь в консоли",
 					"",
-					"let fullDomain = pm.collectionVariables.get(\"domain\"); // или pm.environment.get(\"domain\")",
+					"let fullDomain = domain ; // или pm.environment.get(\"domain\")",
 					"",
 					"",
 					"if (fullDomain) {",
@@ -2500,7 +2500,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "1145544b-dc12-409a-a9cc-d22d25103f88",
+				"id": "a279b5cf-ea17-4c02-9c31-55e6b8c303e0",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

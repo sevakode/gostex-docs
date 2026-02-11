@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bd96cd51-9f54-4ebd-8aae-c65b315b626d",
+				"id": "6370c599-2cfa-44d1-a8ba-ad73c04d3089",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2489,7 +2489,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4261dd95-354e-42bf-970a-9f2d82c85bc9",
+				"id": "a69d16c9-01a8-4813-9e8a-3e403315b307",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2500,10 +2500,6 @@
 		}
 	],
 	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "{{custom_domain}}"
-		},
 		{
 			"key": "merchantId",
 			"value": "lbjk0tqfpgbqeaainyuq6aye"

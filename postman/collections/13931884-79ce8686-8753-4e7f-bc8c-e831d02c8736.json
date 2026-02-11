@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "39ed43e3-f59a-4d39-af82-6a03f588d8a6",
+				"id": "bd96cd51-9f54-4ebd-8aae-c65b315b626d",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2453,7 +2453,7 @@
 					"",
 					"let cleanDomain = fullDomain.split(\".\").slice(1).join(\".\");",
 					"// Сохраняем в новую переменную",
-					"pm.variables.set(\"custom_domain\", cleanDomain);",
+					"pm.variables.set(\"baseUrl\", cleanDomain);",
 					"",
 					"// Проверим, что тело запроса не пустое и является строкой",
 					"if (!body) {",
@@ -2489,7 +2489,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7f885f43-edf4-46ac-a6be-c10f334d64e5",
+				"id": "4261dd95-354e-42bf-970a-9f2d82c85bc9",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bbf22f3d-1648-4243-a531-81671629d8b8",
+				"id": "b30d811d-54d8-4b9a-bf8b-36a89b4ccb8b",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2450,13 +2450,10 @@
 					"",
 					"// Получаем домен из переменных коллекции (или окружения)",
 					"",
-					"// Получаем домен из URL запроса",
-					"let url = pm.request.url.toString();",
-					"let domain = new URL(url).hostname;",
+					"let host = pm.request.url.getHost();",
+					"console.log(\"Host:\", host);",
 					"",
-					"console.log(\"Domain:\", domain); // проверь в консоли",
-					"",
-					"let fullDomain = domain ; // или pm.environment.get(\"domain\")",
+					"let fullDomain = host ; // или pm.environment.get(\"domain\")",
 					"",
 					"",
 					"if (fullDomain) {",
@@ -2500,7 +2497,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0d845ca4-4b47-4cb2-974f-7270553be832",
+				"id": "85ccd71b-9963-425a-862e-2175989b1fb4",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

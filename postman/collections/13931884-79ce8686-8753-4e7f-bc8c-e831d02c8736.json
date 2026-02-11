@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f97ab05d-5e31-4564-86bf-4a145606a393",
+				"id": "132dcfa4-8730-4f79-aae1-7d3e820419eb",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2451,9 +2451,7 @@
 					"// Допустим, переменная \"full_domain\" = \"docs.mysite.ru\"",
 					"let fullDomain = pm.variables.get(\"full_domain\");",
 					"",
-					"// Убираем \"docs.\" из начала",
-					"let cleanDomain = fullDomain.replace(/^docs\\./, \"\");",
-					"",
+					"let cleanDomain = fullDomain.split(\".\").slice(1).join(\".\");",
 					"// Сохраняем в новую переменную",
 					"pm.variables.set(\"custom_domain\", cleanDomain);",
 					"",
@@ -2491,7 +2489,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "9bf6f988-a782-4514-a375-5d5a1d62a0da",
+				"id": "f7ba666d-a597-426f-82a2-17d52d97f8e3",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

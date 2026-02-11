@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6a090a7e-22bb-40ae-b093-4d86a7aa44e8",
+				"id": "6dfd3f8d-a3a8-43f3-8dea-e0fcd6193213",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2492,7 +2492,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c895f2c6-82ee-4709-963c-6d63a401c1fb",
+				"id": "64523d26-861f-45a5-be7b-f1178daf5ad0",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2503,6 +2503,11 @@
 		}
 	],
 	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"disabled": true
+		},
 		{
 			"key": "merchantId",
 			"value": "lbjk0tqfpgbqeaainyuq6aye"

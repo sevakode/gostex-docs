@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "386554a7-01cc-4513-955d-cf6b138b8241",
+				"id": "5a9f1be4-0716-40c6-a15d-b7a944d465c4",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2449,6 +2449,7 @@
 					"let body = pm.variables.replaceIn(rawBody);",
 					"",
 					"// Получаем домен из переменных коллекции (или окружения)",
+					"",
 					"let fullDomain = pm.collectionVariables.get(\"domain\"); // или pm.environment.get(\"domain\")",
 					"",
 					"",
@@ -2493,7 +2494,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "9576f928-e8c7-4439-8e31-e9898117e984",
+				"id": "07fe3667-cd98-487b-b5ea-340a1c07444c",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

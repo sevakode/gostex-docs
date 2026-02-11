@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c171dc73-0e1a-41ae-aa95-22558f1cbb3a",
+				"id": "386554a7-01cc-4513-955d-cf6b138b8241",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2450,6 +2450,7 @@
 					"",
 					"// Получаем домен из переменных коллекции (или окружения)",
 					"let fullDomain = pm.collectionVariables.get(\"domain\"); // или pm.environment.get(\"domain\")",
+					"",
 					"",
 					"if (fullDomain) {",
 					"    // Убираем префикс \"docs.\" (замени на свой)",
@@ -2492,7 +2493,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b1484ed9-f0a1-4bcd-b9b3-d0a8cfd66077",
+				"id": "9576f928-e8c7-4439-8e31-e9898117e984",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

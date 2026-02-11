@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "73127153-351a-4876-8681-bdafc5e74cb0",
+				"id": "f97ab05d-5e31-4564-86bf-4a145606a393",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2447,6 +2447,15 @@
 					"// Получаем тело запроса в сыром виде",
 					"let rawBody = pm.request.body.raw;",
 					"let body = pm.variables.replaceIn(rawBody);",
+					"",
+					"// Допустим, переменная \"full_domain\" = \"docs.mysite.ru\"",
+					"let fullDomain = pm.variables.get(\"full_domain\");",
+					"",
+					"// Убираем \"docs.\" из начала",
+					"let cleanDomain = fullDomain.replace(/^docs\\./, \"\");",
+					"",
+					"// Сохраняем в новую переменную",
+					"pm.variables.set(\"custom_domain\", cleanDomain);",
 					"",
 					"// Проверим, что тело запроса не пустое и является строкой",
 					"if (!body) {",
@@ -2482,7 +2491,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3e1878de-7ab3-4a0b-b49e-c509177aa46f",
+				"id": "9bf6f988-a782-4514-a375-5d5a1d62a0da",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

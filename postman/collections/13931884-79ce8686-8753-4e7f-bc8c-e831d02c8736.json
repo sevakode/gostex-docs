@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"orderId\": \"eeeeseeeыecce\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 1234,\n    \"currency\": \"RUB\",\n    \"method\": \"c2c\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n    \"payer\": {\n        \"userId\": \"u-40deeeceecds9d5\"\n    }\n}",
+							"raw": "{\n    \"orderId\": \"asdssadssad\",\n    \"merchantId\": \"{{merchantId}}\",\n    \"amount\": 1236,\n    \"currency\": \"RUB\",\n    \"method\": \"c2c\",\n    \"callbackUri\": \"https://yourdomain.com/callback\",\n    \"successUri\": \"https://yourdomain.com/success\",\n    \"failUri\": \"https://yourdomain.com/fail\",\n    \"payer\": {\n        \"userId\": \"u-40deeeceecsds9d5\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"

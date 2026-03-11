@@ -2430,7 +2430,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "1|aOUSKyhjIElibzAyHiDfG8Vyyu7xqypRPezJNmKo",
+				"value": "1|aOUSKyhjIElibzAyHiDfG8Vyyu7xqypRPezJNmK",
 				"type": "string"
 			}
 		]
@@ -2439,7 +2439,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9998ed62-559c-4bf7-8733-be8e3f341ac6",
+				"id": "992aff4c-a259-4fba-a3e4-fec372d48b49",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -2482,7 +2482,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "feedd28a-316e-4d2c-83d2-f8c7fc46e5a9",
+				"id": "8088147e-9fa8-4535-822b-d888427dc44d",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},

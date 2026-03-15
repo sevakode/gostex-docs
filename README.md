@@ -10,7 +10,7 @@
 - **FAQ (каноничный)**: [`faq.md`](./faq.md)
 - **Операционные материалы**: [`ops/README.md`](./ops/README.md)
 - **Инструкция по трейдерской админ-панели**: [`ops/trader-admin-guide.md`](./ops/trader-admin-guide.md)
-- **Postman коллекция (json)**: [`postman/collections/`](./postman/collections/)
+- **API Reference (Postman)**: [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) | [`postman/collections/`](./postman/collections/)
 
 ## Структура каталога
 
@@ -23,7 +23,6 @@ docs/
   ai/
     README.md
     knowledge-base.md
-    api-reference.md
     trade-service.md
     troubleshooting.md
     glossary.md
@@ -34,7 +33,6 @@ docs/
   postman/
     collections/
       *.json
-  # бинарные вложения (docx/pdf/xlsx) — см. ops/README.md
 ```
 
 

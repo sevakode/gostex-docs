@@ -215,7 +215,7 @@ flowchart TD
 
 - [ ] callbackUri доступен из интернета
 - [ ] callbackUri возвращает HTTP 200
-- [ ] IP 116.202.228.230 и 64.226.73.77 в whitelist
+- [ ] Webhook IP-адреса (запросить у DevOps) добавлены в whitelist
 - [ ] SSL сертификат валидный
 - [ ] Нет редиректов (301/302)
 - [ ] Content-Type: application/json в ответе

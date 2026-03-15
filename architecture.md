@@ -3,7 +3,7 @@
 > **Связанная документация:**
 > - [📚 AI Knowledge Base](./ai/knowledge-base.md) — Индекс AI документации
 > - [🔄 Trade Service](./ai/trade-service.md) — P2P процессинг
-> - [📡 API Reference](./ai/api-reference.md) — API документация
+> - [📡 API Reference (Postman)](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) — API документация
 > - [🔧 Troubleshooting](./ai/troubleshooting.md) — Решение проблем
 > - [📖 Glossary](./ai/glossary.md) — Глоссарий терминов
 
@@ -13,11 +13,13 @@
 
 | Сервис | Стек | Порт | Описание |
 |--------|------|------|----------|
-| **Aggregator** | Laravel/PHP | 80/443 | Core API для мерчантов, админка, cascade к провайдерам |
+| **Aggregator** | Laravel/PHP | 80/443 | Core API для мерчантов, cascade к провайдерам |
+| **Agradmin** | Yii2/PHP | 80/443 | Админ-панель агрегатора (взаимодействует с Aggregator через REST API) |
 | **Trade** | Yii2/PHP | 80/443 | P2P процессинг, управление трейдерами и реквизитами |
 | **Flow** | React/TypeScript | 80/443 | Платёжный UI для плательщиков |
 | **Rate Service** | FastAPI/Python | 8080 | Курсы валют из бирж (Binance, Bybit, etc.) |
 | **Support Service** | FastAPI/Python | 8000 | Тикеты, диспуты, Telegram интеграция |
+| **Bank Detection** | — | — | Определение банка по номеру карты (BIN) |
 | **Gostscope** | Laravel/PHP | 80 | Единый дашборд Telescope + OpenSearch |
 
 ---
@@ -168,7 +170,7 @@ flowchart TB
 ```
 aggregator/
 ├── app/
-│   ├── Gateway/           # 40+ провайдеров (Trade, Wirecore, Infinity, etc.)
+│   ├── Gateway/           # 100+ провайдеров (Trade, Wirecore, Infinity, etc.)
 │   ├── Http/Controllers/
 │   │   ├── Api/           # Merchant API v1/v2
 │   │   └── Merchants/     # Merchant cabinet
@@ -516,7 +518,8 @@ graph LR
 | **Flow** | React + TypeScript + Vite | 18+ |
 | **Rate Service** | FastAPI + Redis | 0.100+ |
 | **Support Service** | FastAPI + SQLAlchemy | 0.100+ |
-| **Gostscope** | Laravel + Livewire | 11+ |
+| **Agradmin** | Yii2 | 2.0 |
+| **Gostscope** | Laravel + Livewire | 12+ |
 | **Database** | PostgreSQL + Patroni | 15+ |
 | **Cache/Queue** | Redis | 7+ |
 | **Search/Logs** | OpenSearch | 2.x |
@@ -535,7 +538,7 @@ graph LR
 | Trade | 80/443 | `/site/health` |
 | Flow | 80/443 | Static SPA |
 | Rate Service | 8080 | `/health` |
-| Support Service | 8000 | `/docs` |
+| Support Service | 8000 | `/docs` (Swagger UI) |
 | PostgreSQL | 5432 | — |
 | Redis | 6379 | — |
 | OpenSearch | 9200 | `/_cluster/health` |

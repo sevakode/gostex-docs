@@ -559,7 +559,7 @@ graph LR
 | **Merchant Panel** | React 19 + TanStack + Zustand + Vite | — |
 | **Rate Service** | FastAPI + Redis | 0.100+ |
 | **Support Service** | FastAPI + SQLAlchemy | 0.100+ |
-| **Agradmin** | Yii2 | 2.0 |
+| **Agradmin** (legacy, заменяется на Admin Panel) | Yii2 | 2.0 |
 | **Gostscope** | Laravel + Livewire | 12+ |
 | **Database** | PostgreSQL + Patroni | 15+ |
 | **Cache/Queue** | Redis | 7+ |

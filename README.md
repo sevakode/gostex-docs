@@ -63,3 +63,6 @@ docs/
 | `highpay/frontend` | Админ-панель + кабинет мерчанта | React 19 / TypeScript / Vite |
 | `highpay/agradmin` | Админ-панель (legacy) | Yii2 / PHP |
 | `gostex-io/docs` | Эта документация | Markdown |
+
+---
+**Последнее обновление:** 2026-03-21

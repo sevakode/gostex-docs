@@ -18,7 +18,7 @@
 
 Описание компонентов системы: ядро платформы, микросервисы, базы данных, очереди сообщений, внешние интеграции. Потоки данных между компонентами.
 
-**Файл:** [`architecture.md`](./architecture.md)
+**Файлы:** [`architecture.md`](./architecture.md), [`flow.md`](./flow.md)
 
 ### 2.2. Роли участников
 
@@ -293,7 +293,7 @@
 
 Процедуры и регламенты работы техподдержки, обработка обращений.
 
-**Файл:** [`ops/tech-support.md`](./ops/tech-support.md)
+**Файлы:** [`ops/tech-support.md`](./ops/tech-support.md), [`support-service.md`](./support-service.md)
 
 ### 11.2. Troubleshooting
 
@@ -340,3 +340,7 @@
 API-коллекция для тестирования интеграции.
 
 **Файлы:** [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu), [`postman/collections/`](./postman/collections/)
+�кция для тестирования интеграции.
+
+**Файлы:** [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu), [`postman/collections/`](./postman/collections/)
+ostman/collections/`](./postman/collections/)

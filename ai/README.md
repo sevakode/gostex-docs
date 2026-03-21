@@ -1,20 +1,16 @@
-# AI документация (структурная)
+# 🧠 PSP Platform — AI Knowledge Base
 
-Здесь лежат “атомарные” документы, **без дублирования**: каждый файл отвечает за свою область и ссылается на остальные.
+## Документация
+
+- **Архитектура и сервисы**: [`../architecture.md`](../architecture.md)
+- **API Reference (Postman)**: [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) | [Коллекция (json)](../postman/collections/)
+- **Trade Service (P2P)**: [`trade-service.md`](./trade-service.md)
+- **Troubleshooting / частые проблемы**: [`troubleshooting.md`](./troubleshooting.md)
+- **Глоссарий**: [`glossary.md`](./glossary.md)
 
 ## Навигация
 
-- **Knowledge Base (индекс)**: [`knowledge-base.md`](./knowledge-base.md)
-- **API Reference (Postman)**: [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) | [Коллекция (json)](../postman/collections/)
-- **Trade Service**: [`trade-service.md`](./trade-service.md)
-- **Troubleshooting**: [`troubleshooting.md`](./troubleshooting.md)
-- **Glossary**: [`glossary.md`](./glossary.md)
-
-## Принцип
-
-- Если вопрос про **архитектуру** — начинайте с `docs/architecture.md`.
-- Если вопрос про **API/интеграцию** — Postman-коллекция + `troubleshooting.md`.
-- Если вопрос про **P2P/Trade** — `trade-service.md`.
-- Если нужен **контекст терминов** — `glossary.md`.
-
-
+- Вопросы про **ошибки интеграции** (401/403/40002/40403 и т.п.) → `troubleshooting.md`
+- Вопросы про **форматы запросов/ответов/подписи** → Postman-коллекция
+- Вопросы про **P2P, трейдеров, SMS, Telegram бот** → `trade-service.md`
+- Вопросы "как всё связано" → `../architecture.md`

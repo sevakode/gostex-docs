@@ -13,10 +13,12 @@
 
 | Сервис | Стек | Порт | Описание |
 |--------|------|------|----------|
-| **Aggregator** | Laravel/PHP | 80/443 | Core API для мерчантов, cascade к провайдерам |
-| **Agradmin** | Yii2/PHP | 80/443 | Админ-панель агрегатора (взаимодействует с Aggregator через REST API) |
+| **Aggregator** | Laravel 12/PHP 8.4 | 80/443 | Core API для мерчантов, cascade к провайдерам |
+| **Admin Panel** | React 19/TypeScript | 80/443 | Новая админ-панель агрегатора (SPA, взаимодействует с Aggregator через REST API) |
+| **Agradmin** *(legacy)* | Yii2/PHP | 80/443 | Старая админ-панель (заменяется на Admin Panel) |
 | **Trade** | Yii2/PHP | 80/443 | P2P процессинг, управление трейдерами и реквизитами |
 | **Flow** | React/TypeScript | 80/443 | Платёжный UI для плательщиков |
+| **Merchant Panel** | React 19/TypeScript | 80/443 | Кабинет мерчанта (SPA) |
 | **Rate Service** | FastAPI/Python | 8080 | Курсы валют из бирж (Binance, Bybit, etc.) |
 | **Support Service** | FastAPI/Python | 8000 | Тикеты, диспуты, Telegram интеграция |
 | **Bank Detection** | — | — | Определение банка по номеру карты (BIN) |
@@ -170,7 +172,7 @@ flowchart TB
 ```
 aggregator/
 ├── app/
-│   ├── Gateway/           # 100+ провайдеров (Trade, Wirecore, Infinity, etc.)
+│   ├── Gateway/           # 190+ провайдеров (Trade, Wirecore, Infinity, etc.)
 │   ├── Http/Controllers/
 │   │   ├── Api/           # Merchant API v1/v2
 │   │   └── Merchants/     # Merchant cabinet
@@ -276,7 +278,44 @@ flow/
 
 ---
 
-### 4. Rate Service (FastAPI)
+### 4. Frontend (React 19 Monorepo)
+
+**Назначение:** Новая админ-панель и кабинет мерчанта. Монорепозиторий с shared пакетами.
+
+**Репозиторий:** `highpay/frontend`
+
+```
+frontend/
+├── admin-panel/           # Админ-панель агрегатора (SPA)
+│   └── src/
+│       ├── pages/         # ~25 страниц (Dashboard, Merchants, Methods, etc.)
+│       ├── components/
+│       │   ├── merchants/ # Табы карточки мерчанта (General, Methods, Balance, etc.)
+│       │   ├── roles/     # Матрица прав (RBAC)
+│       │   └── ui/        # UI-компоненты
+│       ├── clients/       # White-label конфиги (aggrepay, asgard, default)
+│       └── i18n/          # ru, en, ko
+├── merchant-panel/        # Кабинет мерчанта (SPA)
+│   └── src/
+│       ├── pages/         # Payments, Balance, Reports, Settings, etc.
+│       ├── components/
+│       │   └── modals/    # Payin, Payout, Withdrawal, Convert, Insurance
+│       └── stores/        # Zustand (auth)
+├── packages/
+│   ├── lib/               # Shared: API client, types, utils, hooks
+│   └── ui/                # Shared UI: badge, button, input, modal, sidebar, etc.
+└── package.json           # npm workspaces
+```
+
+**Стек:** React 19, TypeScript 5.9, TanStack Query + Table, Zustand, Tailwind CSS 4, Vite 6
+
+**Статус:** В разработке. Заменяет agradmin (Yii2) и старый merchant cabinet.
+
+**API:** Использует REST API Aggregator (Sanctum auth, RBAC permissions).
+
+---
+
+### 5. Rate Service (FastAPI)
 
 **Назначение:** Агрегация курсов с бирж для всех сервисов.
 
@@ -304,7 +343,7 @@ RUB, UZS, KZT, KGS, AZN, TJS, TRY, GEL, INR, ARS, EUR
 
 ---
 
-### 5. Support Service (FastAPI)
+### 6. Support Service (FastAPI)
 
 **Назначение:** Система тикетов и диспутов с Telegram интеграцией.
 
@@ -332,7 +371,7 @@ support-service/
 
 ---
 
-### 6. Gostscope (Laravel)
+### 7. Gostscope (Laravel)
 
 **Назначение:** Единый дашборд для мониторинга всех ВЛ.
 
@@ -513,9 +552,11 @@ graph LR
 
 | Компонент | Технология | Версия |
 |-----------|------------|--------|
-| **Aggregator** | Laravel | 10+ |
-| **Trade** | Yii2 | 2.0 |
+| **Aggregator** | Laravel | 12 (PHP 8.4) |
+| **Trade** | Yii2 | 2.0 (PHP 8.x) |
 | **Flow** | React + TypeScript + Vite | 18+ |
+| **Admin Panel** | React 19 + TanStack + Zustand + Vite | — |
+| **Merchant Panel** | React 19 + TanStack + Zustand + Vite | — |
 | **Rate Service** | FastAPI + Redis | 0.100+ |
 | **Support Service** | FastAPI + SQLAlchemy | 0.100+ |
 | **Agradmin** | Yii2 | 2.0 |

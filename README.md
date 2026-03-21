@@ -5,10 +5,14 @@
 ## Быстрые ссылки
 
 - **Архитектура**: [`architecture.md`](./architecture.md)
+- **Flow (платёжная страница)**: [`flow.md`](./flow.md)
+- **Rate Service (курсы)**: [`rate-service.md`](./rate-service.md)
+- **Support Service**: [`support-service.md`](./support-service.md)
+- **Deployment**: [`deployment.md`](./deployment.md)
 - **Админ-панель агрегатора (legacy)**: [`agradmin.md`](./agradmin.md)
 - **Кабинет мерчанта**: [`merchant-cabinet.md`](./merchant-cabinet.md)
-- **AI-документация (структурно)**: [`ai/README.md`](./ai/README.md)
-- **FAQ (каноничный)**: [`faq.md`](./faq.md)
+- **AI-документация**: [`ai/README.md`](./ai/README.md)
+- **FAQ**: [`faq.md`](./faq.md)
 - **Операционные материалы**: [`ops/README.md`](./ops/README.md)
 - **Инструкция по трейдерской админ-панели**: [`ops/trader-admin-guide.md`](./ops/trader-admin-guide.md)
 - **API Reference (Postman)**: [Postman Documentation](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) | [`postman/collections/`](./postman/collections/)
@@ -24,6 +28,10 @@
 docs/
   README.md
   architecture.md          # Архитектура платформы, сервисы, стек
+  flow.md                  # Flow — платёжная страница
+  rate-service.md          # Rate Service — курсы валют
+  support-service.md       # Support Service — тикеты и диспуты
+  deployment.md            # Развёртывание платформы
   agradmin.md              # Админ-панель агрегатора (legacy Yii2)
   merchant-cabinet.md      # Кабинет мерчанта
   faq.md                   # Часто задаваемые вопросы

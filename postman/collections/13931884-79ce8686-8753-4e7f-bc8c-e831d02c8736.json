@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"payer\": {\n\t\t\"userId\": \"test-user\",\n\t\t\"userIp\": \"127.0.0.1\"\n\t},\n\t\"amount\": \"1930\",\n\t\"method\": \"sim\",\n\t\"orderId\": \"builder-tessts-UbsDssHs7uOw\",\n\t\"currency\": \"RUB\",\n\t\"merchantId\": \"lbjk0tqfpgbqeaainyuq6saye\",\n\t\"callbackUri\": \"https://test.local/callback\"\n}",
+							"raw": "{\n\t\"payer\": {\n\t\t\"userId\": \"test-user\",\n\t\t\"userIp\": \"127.0.0.1\"\n\t},\n\t\"amount\": \"1630\",\n\t\"method\": \"sim\",\n\t\"orderId\": \"builder-tessts-UbsDsssHs7sOw\",\n\t\"currency\": \"RUB\",\n\t\"merchantId\": \"lbjk0tqfpgbqeaainyuq6aye\",\n\t\"callbackUri\": \"https://test.local/callback\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

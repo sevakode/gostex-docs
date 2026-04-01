@@ -1,7 +1,7 @@
 # PSP Platform Architecture
 
 > **Связанная документация:**
-> - [📚 AI Knowledge Base](./ai/knowledge-base.md) — Индекс AI документации
+>
 > - [🔄 Trade Service](./ai/trade-service.md) — P2P процессинг
 > - [📡 API Reference (Postman)](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) — API документация
 > - [🔧 Troubleshooting](./ai/troubleshooting.md) — Решение проблем
@@ -11,18 +11,19 @@
 
 ## 🏗️ Обзор сервисов
 
-| Сервис | Стек | Порт | Описание |
-|--------|------|------|----------|
-| **Aggregator** | Laravel 12/PHP 8.4 | 80/443 | Core API для мерчантов, cascade к провайдерам |
-| **Admin Panel** | React 19/TypeScript | 80/443 | Новая админ-панель агрегатора (SPA, взаимодействует с Aggregator через REST API) |
-| **Agradmin** *(legacy)* | Yii2/PHP | 80/443 | Старая админ-панель (заменяется на Admin Panel) |
-| **Trade** | Yii2/PHP | 80/443 | P2P процессинг, управление трейдерами и реквизитами |
-| **Flow** | React/TypeScript | 80/443 | Платёжный UI для плательщиков |
-| **Merchant Panel** | React 19/TypeScript | 80/443 | Кабинет мерчанта (SPA) |
-| **Rate Service** | FastAPI/Python | 8080 | Курсы валют из бирж (Binance, Bybit, etc.) |
-| **Support Service** | FastAPI/Python | 8000 | Тикеты, диспуты, Telegram интеграция |
-| **Bank Detection** | — | — | Определение банка по номеру карты (BIN) |
-| **Gostscope** | Laravel/PHP | 80 | Единый дашборд Telescope + OpenSearch |
+
+| Сервис                  | Стек                | Порт   | Описание                                                                         |
+| ----------------------- | ------------------- | ------ | -------------------------------------------------------------------------------- |
+| **Aggregator**          | Laravel 12/PHP 8.4  | 80/443 | Core API для мерчантов, cascade к провайдерам                                    |
+| **Admin Panel**         | React 19/TypeScript | 80/443 | Новая админ-панель агрегатора (SPA, взаимодействует с Aggregator через REST API) |
+| **Agradmin** *(legacy)* | Yii2/PHP            | 80/443 | Старая админ-панель (заменяется на Admin Panel)                                  |
+| **Trade**               | Yii2/PHP            | 80/443 | P2P процессинг, управление трейдерами и реквизитами                              |
+| **Flow**                | React/TypeScript    | 80/443 | Платёжный UI для плательщиков                                                    |
+| **Merchant Panel**      | React 19/TypeScript | 80/443 | Кабинет мерчанта (SPA)                                                           |
+| **Rate Service**        | FastAPI/Python      | 8080   | Курсы валют из бирж (Binance, Bybit, etc.)                                       |
+| **Support Service**     | FastAPI/Python      | 8000   | Тикеты, диспуты, Telegram интеграция                                             |
+| **Bank Detection**      | —                   | —      | Определение банка по номеру карты (BIN)                                          |
+
 
 ---
 
@@ -84,7 +85,6 @@ flowchart TB
     subgraph Observability["📊 Observability"]
         OpenSearch["OpenSearch"]
         Grafana["Grafana"]
-        Gostscope["Gostscope"]
         Filebeat["Filebeat"]
     end
 
@@ -147,19 +147,21 @@ flowchart TB
     AGG1 & AGG2 -->|"JSON Logs"| Filebeat
     TRADE -->|"JSON Logs"| Filebeat
     Filebeat --> OpenSearch
-    OpenSearch --> Gostscope & Grafana
+    OpenSearch --> Grafana
 
     %% Styling
     classDef core fill:#4F46E5,stroke:#312E81,color:#fff
     classDef shared fill:#0891B2,stroke:#164E63,color:#fff
     classDef storage fill:#059669,stroke:#064E3B,color:#fff
     classDef obs fill:#D97706,stroke:#78350F,color:#fff
-    
+
     class AGG1,AGG2,TRADE,Flow core
     class Rate,Support,BankDetect shared
     class PG_Primary,PG_Replica,Redis,S3 storage
-    class OpenSearch,Grafana,Gostscope,Filebeat obs
+    class OpenSearch,Grafana,Filebeat obs
 ```
+
+
 
 ---
 
@@ -172,7 +174,8 @@ flowchart TB
 ```
 aggregator/
 ├── app/
-│   ├── Gateway/           # 190+ провайдеров (Trade, Wirecore, Infinity, etc.)
+│   ├── Gateway/           # 197+ провайдеров (Trade, Wirecore, Infinity, etc.)
+│   │   └── Universal/     # Gateway Builder (UniversalGateway, TemplateEngine, SignatureGenerator)
 │   ├── Http/Controllers/
 │   │   ├── Api/           # Merchant API v1/v2
 │   │   └── Merchants/     # Merchant cabinet
@@ -187,15 +190,19 @@ aggregator/
 ```
 
 **API Endpoints:**
-| Endpoint | Method | Описание |
-|----------|--------|----------|
-| `/api/v2/payments` | POST | Создание payin |
-| `/api/v2/payouts` | POST | Создание payout |
-| `/api/v2/status` | POST | Статус платежа |
-| `/api/v2/balance` | GET | Баланс мерчанта |
-| `/api/callback/{provider}` | POST | Callbacks от провайдеров |
+
+
+| Endpoint                   | Method | Описание                 |
+| -------------------------- | ------ | ------------------------ |
+| `/api/v2/payments`         | POST   | Создание payin           |
+| `/api/v2/payouts`          | POST   | Создание payout          |
+| `/api/v2/status`           | POST   | Статус платежа           |
+| `/api/v2/balance`          | GET    | Баланс мерчанта          |
+| `/api/callback/{provider}` | POST   | Callbacks от провайдеров |
+
 
 **Зависимости:**
+
 - PostgreSQL (основная БД)
 - Redis (cache, queue, sessions)
 - Rate Service (курсы)
@@ -226,22 +233,29 @@ trade/
 ```
 
 **API Endpoints (WebhookController):**
-| Endpoint | Описание |
-|----------|----------|
-| `/webhook/set-send-deal` | Создание payin заявки |
-| `/webhook/set-payout-deal` | Создание payout заявки |
-| `/webhook/get-status-deal` | Статус заявки |
-| `/webhook/set-sms-{bank}` | SMS webhook от банков |
+
+
+| Endpoint                    | Описание                        |
+| --------------------------- | ------------------------------- |
+| `/webhook/set-send-deal`    | Создание payin заявки           |
+| `/webhook/set-payout-deal`  | Создание payout заявки          |
+| `/webhook/get-status-deal`  | Статус заявки                   |
+| `/webhook/set-sms-{bank}`   | SMS webhook от банков           |
 | `/webhook/check-requisites` | Проверка доступности реквизитов |
 
+
 **Trader API:**
-| Endpoint | Описание |
-|----------|----------|
-| `/api/orders` | Список заявок трейдера |
-| `/api/devices` | Устройства трейдера |
-| `/api/device-qr` | QR для SMS Forwarder |
+
+
+| Endpoint         | Описание               |
+| ---------------- | ---------------------- |
+| `/api/orders`    | Список заявок трейдера |
+| `/api/devices`   | Устройства трейдера    |
+| `/api/device-qr` | QR для SMS Forwarder   |
+
 
 **Особенности:**
+
 - Не продаётся без Aggregator
 - Нет мерчантов — работает только как провайдер
 - Telegram Bot для трейдеров
@@ -269,10 +283,13 @@ flow/
 ```
 
 **Роуты:**
-| Route | Описание |
-|-------|----------|
-| `/:orderId` | Страница оплаты |
-| `/` | Тестовое создание транзакции |
+
+
+| Route       | Описание                     |
+| ----------- | ---------------------------- |
+| `/:orderId` | Страница оплаты              |
+| `/`         | Тестовое создание транзакции |
+
 
 **Брендинг:** 30+ white-label брендов (logo-light.svg, logo-dark.svg, favicon.ico)
 
@@ -288,11 +305,12 @@ flow/
 frontend/
 ├── admin-panel/           # Админ-панель агрегатора (SPA)
 │   └── src/
-│       ├── pages/         # ~25 страниц (Dashboard, Merchants, Methods, etc.)
+│       ├── pages/         # ~29 страниц (Dashboard, Merchants, Methods, Gateway Builder, etc.)
 │       ├── components/
-│       │   ├── merchants/ # Табы карточки мерчанта (General, Methods, Balance, etc.)
-│       │   ├── roles/     # Матрица прав (RBAC)
-│       │   └── ui/        # UI-компоненты
+│       │   ├── merchants/        # Табы карточки мерчанта (General, Methods, Balance, etc.)
+│       │   ├── gateway-builder/  # AI Chat, API Tester, Monaco Editor, Import, Presets
+│       │   ├── roles/            # Матрица прав (RBAC)
+│       │   └── ui/               # UI-компоненты
 │       ├── clients/       # White-label конфиги (aggrepay, asgard, default)
 │       └── i18n/          # ru, en, ko
 ├── merchant-panel/        # Кабинет мерчанта (SPA)
@@ -329,12 +347,15 @@ rate/
 ```
 
 **API:**
-| Endpoint | Описание |
-|----------|----------|
-| `GET /rate` | Получить курс |
-| `PATCH /rate` | Установить курс вручную |
-| `GET /methods` | Список методов |
-| `POST /update_methods` | Обновить конфигурацию |
+
+
+| Endpoint               | Описание                |
+| ---------------------- | ----------------------- |
+| `GET /rate`            | Получить курс           |
+| `PATCH /rate`          | Установить курс вручную |
+| `GET /methods`         | Список методов          |
+| `POST /update_methods` | Обновить конфигурацию   |
+
 
 **Поддерживаемые валюты:**
 RUB, UZS, KZT, KGS, AZN, TJS, TRY, GEL, INR, ARS, EUR
@@ -363,34 +384,16 @@ support-service/
 ```
 
 **API:**
-| Endpoint | Описание |
-|----------|----------|
-| `/webhook/action` | Действия из Aggregator |
-| `/orders/{order_id}/messages` | История сообщений |
-| `/disputes` | Управление диспутами |
+
+
+| Endpoint                      | Описание               |
+| ----------------------------- | ---------------------- |
+| `/webhook/action`             | Действия из Aggregator |
+| `/orders/{order_id}/messages` | История сообщений      |
+| `/disputes`                   | Управление диспутами   |
+
 
 ---
-
-### 7. Gostscope (Laravel)
-
-**Назначение:** Единый дашборд для мониторинга всех ВЛ.
-
-```
-gostscope/
-├── app/
-│   ├── Services/
-│   │   ├── OpenSearchService.php    # Поиск по логам
-│   │   ├── TelescopeDataService.php # Telescope данные
-│   │   └── ProjectDatabaseManager.php
-│   └── Models/
-│       └── Project.php              # Подключения к БД ВЛ
-└── resources/views/livewire/
-    ├── logs/
-    │   ├── search.blade.php         # Поиск по ID
-    │   └── overview.blade.php       # Сводка
-    └── projects/
-        └── dashboard.blade.php      # Dashboard проекта
-```
 
 ---
 
@@ -424,6 +427,8 @@ sequenceDiagram
     A->>M: POST callback_uri
 ```
 
+
+
 ### Payout Flow (Aggregator → Trade)
 
 ```mermaid
@@ -442,6 +447,8 @@ sequenceDiagram
     T->>A: POST /callback/trade (success)
     A->>M: POST callback_uri
 ```
+
+
 
 ---
 
@@ -468,24 +475,26 @@ flowchart TB
     subgraph Shared["🌐 Shared Infrastructure"]
         Rate["Rate Service"]
         OpenSearch["OpenSearch Cluster"]
-        Gostscope["Gostscope"]
         Grafana["Grafana"]
         S3["S3 / MinIO"]
     end
 
     WL1_AGG & WL2_AGG --> Rate
     WL1_TRADE & WL2_TRADE --> Rate
-    
+
     WL1_AGG & WL1_TRADE -->|"Logs"| OpenSearch
     WL2_AGG & WL2_TRADE -->|"Logs"| OpenSearch
-    
-    OpenSearch --> Gostscope & Grafana
+
+    OpenSearch --> Grafana
     
     WL1_AGG & WL2_AGG --> S3
     WL1_TRADE & WL2_TRADE --> S3
 ```
 
+
+
 **Изолировано для каждого ВЛ:**
+
 - Aggregator (2 реплики)
 - Trade
 - Flow (с брендингом)
@@ -493,9 +502,9 @@ flowchart TB
 - Redis
 
 **Shared между всеми ВЛ:**
+
 - Rate Service (один инстанс)
 - OpenSearch (разные индексы по ВЛ)
-- Gostscope (подключается к БД каждого ВЛ)
 - Grafana
 - S3/MinIO
 
@@ -521,7 +530,6 @@ graph LR
     
     subgraph Standalone["Автономные"]
         RATE2["Rate Service"]
-        GOSTSCOPE["Gostscope"]
     end
 
     AGG -->|"required"| RATE
@@ -537,64 +545,72 @@ graph LR
     TRADE -->|"required"| RATE
 ```
 
-| Сервис | Может работать без |
-|--------|-------------------|
-| **Aggregator** | Trade, Support, Bank Detection, Flow |
-| **Trade** | — (требует Aggregator) |
-| **Rate Service** | Всё (полностью автономный) |
-| **Support Service** | — (требует Aggregator) |
-| **Flow** | — (требует Aggregator API) |
-| **Gostscope** | — (требует БД проектов) |
+
+
+
+| Сервис              | Может работать без                   |
+| ------------------- | ------------------------------------ |
+| **Aggregator**      | Trade, Support, Bank Detection, Flow |
+| **Trade**           | — (требует Aggregator)               |
+| **Rate Service**    | Всё (полностью автономный)           |
+| **Support Service** | — (требует Aggregator)               |
+| **Flow**            | — (требует Aggregator API)           |
+
 
 ---
 
 ## 🔧 Технологический стек
 
-| Компонент | Технология | Версия |
-|-----------|------------|--------|
-| **Aggregator** | Laravel | 12 (PHP 8.4) |
-| **Trade** | Yii2 | 2.0 (PHP 8.x) |
-| **Flow** | React + TypeScript + Vite | 18+ |
-| **Admin Panel** | React 19 + TanStack + Zustand + Vite | — |
-| **Merchant Panel** | React 19 + TanStack + Zustand + Vite | — |
-| **Rate Service** | FastAPI + Redis | 0.100+ |
-| **Support Service** | FastAPI + SQLAlchemy | 0.100+ |
-| **Agradmin** (legacy, заменяется на Admin Panel) | Yii2 | 2.0 |
-| **Gostscope** | Laravel + Livewire | 12+ |
-| **Database** | PostgreSQL + Patroni | 15+ |
-| **Cache/Queue** | Redis | 7+ |
-| **Search/Logs** | OpenSearch | 2.x |
-| **Metrics** | Prometheus + Grafana | — |
-| **Log Shipping** | Filebeat | 8.x |
-| **Storage** | S3 / MinIO | — |
-| **Container** | Docker | — |
+
+| Компонент                                        | Технология                           | Версия        |
+| ------------------------------------------------ | ------------------------------------ | ------------- |
+| **Aggregator**                                   | Laravel                              | 12 (PHP 8.4)  |
+| **Trade**                                        | Yii2                                 | 2.0 (PHP 8.x) |
+| **Flow**                                         | React + TypeScript + Vite            | 18+           |
+| **Admin Panel**                                  | React 19 + TanStack + Zustand + Vite | —             |
+| **Merchant Panel**                               | React 19 + TanStack + Zustand + Vite | —             |
+| **Rate Service**                                 | FastAPI + Redis                      | 0.100+        |
+| **Support Service**                              | FastAPI + SQLAlchemy                 | 0.100+        |
+| **Agradmin** (legacy, заменяется на Admin Panel) | Yii2                                 | 2.0           |
+| **Database**                                     | PostgreSQL + Patroni                 | 15+           |
+| **Cache/Queue**                                  | Redis                                | 7+            |
+| **Search/Logs**                                  | OpenSearch                           | 2.x           |
+| **Metrics**                                      | Prometheus + Grafana                 | —             |
+| **Log Shipping**                                 | Filebeat                             | 8.x           |
+| **Storage**                                      | S3 / MinIO                           | —             |
+| **Container**                                    | Docker                               | —             |
+
 
 ---
 
 ## 📡 Порты и эндпоинты
 
-| Сервис | Порт | Health Check |
-|--------|------|--------------|
-| Aggregator | 80/443 | `/api/health` |
-| Trade | 80/443 | `/site/health` |
-| Flow | 80/443 | Static SPA |
-| Rate Service | 8080 | `/health` |
-| Support Service | 8000 | `/docs` (Swagger UI) |
-| PostgreSQL | 5432 | — |
-| Redis | 6379 | — |
-| OpenSearch | 9200 | `/_cluster/health` |
-| Grafana | 3000 | `/api/health` |
-| Gostscope | 80 | `/` |
+
+| Сервис          | Порт   | Health Check         |
+| --------------- | ------ | -------------------- |
+| Aggregator      | 80/443 | `/api/health`        |
+| Trade           | 80/443 | `/site/health`       |
+| Flow            | 80/443 | Static SPA           |
+| Rate Service    | 8080   | `/health`            |
+| Support Service | 8000   | `/docs` (Swagger UI) |
+| PostgreSQL      | 5432   | —                    |
+| Redis           | 6379   | —                    |
+| OpenSearch      | 9200   | `/_cluster/health`   |
+| Grafana         | 3000   | `/api/health`        |
+
 
 ---
 
 ## 🔐 Безопасность
 
-| Уровень | Механизм |
-|---------|----------|
-| **API Auth** | Bearer Token (Sanctum) |
-| **Signature** | HMAC-SHA256 для платежей |
-| **IP Whitelist** | Для merchant API |
-| **2FA** | Google Authenticator (Trade, Admin) |
-| **Internal Auth** | Basic Auth (Rate, Support) |
-| **Secrets** | Encrypted в .env |
+
+| Уровень           | Механизм                            |
+| ----------------- | ----------------------------------- |
+| **API Auth**      | Bearer Token (Sanctum)              |
+| **Signature**     | HMAC-SHA256 для платежей            |
+| **IP Whitelist**  | Для merchant API                    |
+| **2FA**           | Google Authenticator (Trade, Admin) |
+| **Internal Auth** | Basic Auth (Rate, Support)          |
+| **Secrets**       | Encrypted в .env                    |
+
+

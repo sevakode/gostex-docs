@@ -15,7 +15,6 @@
 Shared-сервисы (один инстанс на все ВЛ):
 - Rate Service
 - OpenSearch
-- Gostscope
 - Grafana
 - S3 / MinIO
 
@@ -93,7 +92,6 @@ Admin Panel           ← требует Aggregator API
 Merchant Panel        ← требует Aggregator API
          ↓
 Support Service       ← опционально, требует Aggregator
-Gostscope             ← опционально, требует PostgreSQL проектов
 ```
 
 ---
@@ -149,7 +147,6 @@ Gostscope             ← опционально, требует PostgreSQL пр
 |------------|------------|
 | **Grafana** | Дашборды, метрики, алерты |
 | **OpenSearch** | Логи всех сервисов |
-| **Gostscope** | Единый дашборд по ВЛ (Telescope + OpenSearch) |
 | **Filebeat** | Доставка логов в OpenSearch |
 | **Prometheus** | Сбор метрик |
 

@@ -106,10 +106,16 @@ React-приложение — платёжная страница для пла
 ## G
 
 ### Gateway
-PHP-класс провайдера в Aggregator, реализующий интерфейс Gatewable.
+PHP-класс провайдера в Aggregator, реализующий интерфейс Gatewable. 197+ PHP-шлюзов + UniversalGateway (конструктор).
 
 ### Gatewable
-Интерфейс для провайдеров: createInvoice, processCallback, getStatus, etc.
+Интерфейс для провайдеров: createInvoice, handleCallback, getStatus, processPayout, etc.
+
+### Gateway Builder
+Конструктор платёжных шлюзов через JSON-конфигурацию, без PHP-кода. Позволяет создавать payin/payout интеграции из админ-панели. Включает API-тестер, AI-ассистент, Monaco Editor, импорт/экспорт. См. [gateway-builder.md](../gateway-builder.md).
+
+### GatewayTemplate
+Модель JSON-шаблона шлюза в PostgreSQL. Содержит секции: credential_schema, create_invoice, create_payout, handle_callback, get_status, set_status, get_balance, method_params_schema, requisite_chain, authentication.
 
 ### Gostscope
 Единый дашборд для мониторинга всех White-label проектов.
@@ -167,14 +173,12 @@ PHP-класс провайдера в Aggregator, реализующий инт
 ### Merchant / Мерчант
 Клиент платформы (интернет-магазин, сервис). Имеет merchantId, token, secretKey.
 
-### Merchant ID
+### Merchant ID/Code
 Уникальный идентификатор мерчанта для API.
 
 ### Method / Метод
 Способ оплаты: sbp, c2c, nspk, ecom, etc.
 
-### Method Type
-Группа методов: payin, payout, bank-to-bank.
 
 ---
 
@@ -270,7 +274,10 @@ PHP-класс провайдера в Aggregator, реализующий инт
 Период расчёта. T+0 (сразу) или T+1 (следующий рабочий день).
 
 ### Signature
-HMAC-SHA256 подпись запроса. Header: `Signature: {hash}`.
+Подпись запроса. Алгоритмы: HMAC-SHA256, HMAC-SHA512, HMAC-MD5, SHA256, MD5, RSA-SHA256, JWT. В Gateway Builder настраивается через секцию `signature` с указанием алгоритма, ключа, data_template и placement (header/body/query).
+
+### SignatureGenerator
+Класс `app/Gateway/Universal/SignatureGenerator.php` — генерация и верификация подписей для Gateway Builder. Поддерживает 13 алгоритмов.
 
 ### SLA (Service Level Agreement)
 Соглашение об уровне сервиса. Время ответа ≤ 15 минут.
@@ -299,9 +306,6 @@ HMAC-SHA256 подпись запроса. Header: `Signature: {hash}`.
 ---
 
 ## T
-
-### Telescope
-Laravel инструмент для отладки. Показывает requests, exceptions, jobs, queries.
 
 ### Timeout
 Максимальное время ожидания в каскаде (секунды).
@@ -339,6 +343,8 @@ IP адрес плательщика. Используется для антиф
 
 ### UZCARD
 Платёжная система Узбекистана.
+
+
 
 ---
 

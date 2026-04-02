@@ -1092,7 +1092,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"merchantId\": \"{{merchantId}}\",\n    \"paymentId\": \"a2190182a-a64c-4752-898d-836b8abe9cc6g\"\n}",
+							"raw": "{\n    \"merchantId\": \"{{merchantId}}\",\n    \"orderId\": \"66e0d7a228891\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1100,14 +1100,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v2/status",
+							"raw": "{{baseUrl}}/api/v2/media",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v2",
-								"status"
+								"media"
 							]
 						},
 						"description": "### API Request Description\n\nThis POST request is used to retrieve receipt (media) links for a payment using the provided merchant ID and order ID. The request should include the merchant ID and order ID in the request body.\n\n### Request Body Parameters:\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `merchantId` | string | Yes | Unique identifier of the merchant. |\n| `orderId` | string | Yes | The original order ID provided during payment creation. |"
@@ -1132,7 +1132,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"merchantId\": \"ljsf1opu7eqrfoytme7rq8ol\",\n    \"paymentId\": \"66e0d7a228891\"\n}",
+									"raw": "{\n    \"merchantId\": \"ljsf1opu7eqrfoytme7rq8ol\",\n    \"orderId\": \"66e0d7a228891\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1140,14 +1140,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/v2/status",
+									"raw": "{{baseUrl}}/api/v2/media",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
 										"v2",
-										"status"
+										"media"
 									]
 								}
 							},
@@ -1194,7 +1194,7 @@
 							],
 							"cookie": [],
 							"responseTime": null,
-							"body": "{\n    \"datetime\": 1755690497,\n    \"id\": \"a2190182a-b64c-4756-898d-836b8abe9cc6g\",\n    \"orderId\": \"02c4f5da-2000-48b9-af2e-d7a498c95f08\",\n    \"created_at\": \"2025-08-20T11:47:48.000000Z\",\n    \"expired_at\": \"2025-08-20T12:02:48.000000Z\",\n    \"status\": false,\n    \"state\": \"pending\",\n    \"type\": \"payin\",\n    \"userId\": \"19bd3fs4-c8b7-411c-8641-502d2e0b586d81\",\n    \"amount\": \"2182.00\",\n    \"media\": [],\n    \"init_amount\": \"2182.00\",\n    \"amount_commission_less\": 1941.98,\n    \"currency\": \"RUB\",\n    \"rate\": 80.79,\n    \"commission\": 11,\n    \"method\": \"c2c\"\n}"
+							"body": "{\n  \"status\": true,\n  \"media\": [\n    \"https://.../check1.jpg\",\n    \"https://.../check2.jpg\"\n  ]\n}"
 						},
 						{
 							"id": "13931884-4ea7abeb-4b17-45d0-8c5d-43dafd68c8c7",

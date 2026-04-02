@@ -1110,7 +1110,7 @@
 								"status"
 							]
 						},
-						"description": "### API Request Description\n\nThis POST request is used to retrieve receipt (media) links for a payment using the provided merchant ID and order ID. The request should include the merchant ID and order ID in the request body.\n\n### Request Body Parameters:\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `merchantId` | string | Yes | Unique identifier of the merchant. |\n| `orderId` | string | Yes | `orderId` платежа (external id) |"
+						"description": "### API Request Description\n\nThis POST request is used to retrieve receipt (media) links for a payment using the provided merchant ID and order ID. The request should include the merchant ID and order ID in the request body.\n\n### Request Body Parameters:\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `merchantId` | string | Yes | Unique identifier of the merchant. |\n| `orderId` | string | Yes | The original order ID provided during payment creation. |"
 					},
 					"response": [
 						{

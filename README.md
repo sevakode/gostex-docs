@@ -7,7 +7,6 @@
 - **Архитектура**: [architecture.md](./architecture.md)
 - **Flow (платёжная страница)**: [flow.md](./flow.md)
 - **Flow — гайд для WL-операторов**: [flow-guide.md](./flow-guide.md)
-- **Rate Service (курсы)**: [rate-service.md](./rate-service.md)
 - **Support Service**: [support-service.md](./support-service.md)
 - **Deployment**: [deployment.md](./deployment.md)
 - **Админ-панель агрегатора (legacy)**: [agradmin.md](./agradmin.md)

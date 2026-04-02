@@ -1198,7 +1198,7 @@
 						},
 						{
 							"id": "13931884-4ea7abeb-4b17-45d0-8c5d-43dafd68c8c7",
-							"name": "Success (no checks)",
+							"name": "No checks",
 							"originalRequest": {
 								"method": "POST",
 								"header": [

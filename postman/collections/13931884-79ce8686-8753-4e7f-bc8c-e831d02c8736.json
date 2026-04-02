@@ -1071,7 +1071,7 @@
 					]
 				},
 				{
-					"name": "Get Payment Status Copy",
+					"name": "Get Payment Checks",
 					"id": "13931884-db4dc6b9-e9b9-4972-9326-f592437a8490",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true

@@ -2,7 +2,7 @@
 
 > **Стек:** Laravel 12 / PHP 8.4 + PostgreSQL + Redis
 > **Репозиторий:** `aggregator/`
-> **Последнее обновление:** 2026-04-15
+> **Последнее обновление:** 2026-04-15 (автосинк)
 
 ---
 
@@ -11,7 +11,7 @@
 AGGREpay Aggregator — ядро платёжной платформы. Принимает запросы от мерчантов, маршрутизирует через платёжных провайдеров (шлюзы), управляет каскадами, балансами, трейдерами, диспутами.
 
 **Ключевые цифры:**
-- 213+ платёжных шлюзов в `app/Gateway/`
+- 216+ платёжных шлюзов в `app/Gateway/`
 - Поддерживает payin, payout, withdrawal, conversion
 - Многоарендная архитектура (WL = отдельный инстанс)
 
@@ -96,6 +96,8 @@ AGGREpay Aggregator — ядро платёжной платформы. Прин
 
 **Providers / Gateways:**
 - `GET/POST /api/gateways/` — список, создание провайдеров
+
+> **Примечание (2026-04-15):** IP whitelist middleware (`VerifyGatewayWhitelistIp`) на `/callback/*` маршрутах временно отключён — все callback-запросы принимаются без IP-фильтрации.
 - `GET /api/gateways/{gateway}/balance` — баланс провайдера
 - `POST /api/gateways/balances` — балансы всех провайдеров
 - `POST /api/gateways/broadcast` — рассылка сообщений провайдерам
@@ -237,7 +239,37 @@ tests/
 
 ---
 
-## 10. Настройки приложения
+## 10. Провайдеры — последние обновления
+
+### GostexEcom / GostexEcomGatewable (добавлен 2026-04-15)
+
+Новый шлюз для **quasi-ecom** платежей (двухэтапный flow с карточными данными).
+
+**Flow:**
+1. `POST /api/v2/payments` — создаёт payment на удалённом агрегаторе (без method)
+2. `POST /api/v2/payments/{orderId}/payments` — отправляет карточные данные + method, получает инвойс
+
+Карточные данные (`number`, `cvv`, `expiry`, `holder`) передаются мерчантом через `optionalParams['card']` → `injectParams`.
+
+**Конфигурация метода:**
+| Параметр | Обязательный | Описание |
+|----------|-------------|----------|
+| `currency` | ✅ | Валюта (напр. `RUB`) |
+| `methodType` | ✅ | Тип метода |
+| `senderBank` | — | Банк отправителя |
+| `assetOrBank` | — | Актив или банк |
+
+**Конфигурация шлюза:** `dropdown` (sandbox/live), `baseUrl`, `token`, `secretKey`, `merchantId`.
+
+### FinViaGatewableV2 (добавлен 2026-04-15)
+
+Новая версия шлюза FinVia (`app/Gateway/FinVia/FinViaGatewableV2.php`). Реализует `Gatewable`, `GatewayBalance`, `StatusChangable`, `BreakerRules`.
+
+**Конфигурация:** `baseUrl`, `apiKey`, `secretKey`. Метод: опциональный `methodCode`.
+
+---
+
+## 11. Настройки приложения
 
 Ключевые параметры в `app_settings` (через Admin API):
 
@@ -249,3 +281,16 @@ tests/
 | `app.flow_url` | URL Flow (платёжная страница) |
 | `app.trade_url` | URL Trade (реквизиты) |
 | `app.rate_service_url` | URL Rate Service |
+
+---
+
+## 12. Callback маршруты
+
+| Маршрут | Методы | Описание |
+|---------|--------|----------|
+| `/callback/check/upload` | POST | Загрузка чека |
+| `/callback/check/delete` | POST | Удаление чека |
+| `/callback/{method_code}` | GET, POST | Callback от провайдера |
+| `/callback/{method_code}/{transaction_id}` | GET, POST | Callback с ID транзакции |
+
+> **Изменение 2026-04-15:** Middleware `VerifyGatewayWhitelistIp` закомментирован на `/callback/` группе. Маршруты открыты для всех IP.

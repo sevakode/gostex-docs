@@ -107,3 +107,15 @@ PATCH /rate?currency=RUB&second_currency=USDT&source_exchanges=static-91.5&side=
 ## 5. Контакт
 
 Разработчик: r.denis (`r.denis@gostex.io`)
+
+---
+
+## 5. Источники курсов — обновления
+
+### binance101215 (добавлен 2026-04-16)
+
+Добавлен новый статический источник курса **binance101215**.
+
+- **Тип:** Static rate source (Binance)
+- **Добавлен:** Denis Python (r.denis@gostex.io)
+- **Ветка:** dev → main (MR !142)

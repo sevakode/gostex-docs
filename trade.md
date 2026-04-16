@@ -370,3 +370,27 @@ PAYOUT_COOLDOWN_MINUTES=5
 **Дата обновления**: 27.11.2024
 
 ## Добавить в env агрегатора API_TOKEN_TRADE, в трейдер добавить API_TOKEN_AGREPAY с одинаковыми токенами
+
+---
+
+## PayoutStatusCallbackJob — масштабная доработка (2026-04-16)
+
+В течение дня проведена масштабная итерация над `PayoutStatusCallbackJob` и связанными компонентами. Суммарно ~15 hotfix-коммитов (v1.24.9 → v1.24.23).
+
+### Изменения
+
+| Компонент | Изменение |
+|-----------|-----------|
+| **PayoutStatusCallbackJob** | Увеличены `maxRetries` и `retryIntervalSec` |
+| **PayoutStatusCallbackJob** | Интеграция OpenTelemetry (трейсинг для всех операций) |
+| **PayoutStatusCallbackJob** | Улучшена обработка ошибок, структурированное логирование |
+| **PayoutStatusCallbackJob** | Добавлена обработка несовпадения transaction ID |
+| **PayoutStatusCallbackJob** | Включён/отключён `cancelDeal` (итерационно отлаживалось) |
+| **WebhookController** | Добавлена конфигурация agrepay |
+| **WebhookController** | Временно отключалось/включалось queuing PayoutStatusCallbackJob |
+| **WebhookController** | Добавлен компонент `OtelComponent` для трейсинга |
+| **BaseMultiService** | Улучшена обработка ошибок |
+
+### Итог
+
+Job обработки статусов выплат переведён на OpenTelemetry, стал более устойчивым к ошибкам и несоответствиям данных. Retry-логика стала агрессивнее (1 сек интервал вместо 2).

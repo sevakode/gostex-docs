@@ -294,3 +294,82 @@ tests/
 | `/callback/{method_code}/{transaction_id}` | GET, POST | Callback с ID транзакции |
 
 > **Изменение 2026-04-15:** Middleware `VerifyGatewayWhitelistIp` закомментирован на `/callback/` группе. Маршруты открыты для всех IP.
+
+### EuphoriaV2Gatewable
+Добавлен новый шлюз **EuphoriaV2Gatewable** в агрегатор GostexPay.
+
+- **Тип:** Gateway (Gatewable)
+- **Версия:** V2
+- **Статус:** Активен
+- **Добавлен:** Sofia Dieva
+
+Шлюз `EuphoriaV2Gatewable` является второй версией интеграции Euphoria и подключается через стандартный интерфейс агрегатора. Поддерживает все базовые операции, определённые в протоколе Gatewable: инициализация платежа, подтверждение транзакции, возврат средств.
+
+**Пример подключения:**
+```python
+from aggregator.gateways import EuphoriaV2Gatewable
+
+gateway = EuphoriaV2Gatewable(config={
+    "api_key": "<YOUR_API_KEY>",
+    "endpoint": "https://api.euphoria.example.com/v2"
+})
+aggregator.register_gateway(gateway)
+```
+
+> **Примечание:** При миграции с EuphoriaV1 убедитесь, что конфигурационные параметры обновлены в соответствии со спецификацией V2.
+
+### Исправление агрегатора (aggregator fix)
+> **Обновление:** Внесено исправление в модуль агрегатора.
+
+- **Автор:** ani
+- **Источник:** GitLab
+- **Приоритет:** Important
+
+В модуль агрегатора было внесено исправление (fix). Рекомендуется проверить актуальность интеграционных сценариев, связанных с агрегатором, и убедиться, что поведение системы соответствует ожидаемому. Подробности изменения уточняйте у ответственного разработчика (ani) или в истории коммитов репозитория.
+
+---
+
+## 13. Провайдеры — обновления 2026-04-16
+
+### NimboGatewable (интегрирован 2026-04-16)
+
+Добавлен полный шлюз **Nimbo** (`app/Gateway/Nimbo/NimboGatewable.php`, 620 строк).
+
+- **Тип:** Gateway (Gatewable)
+- **Автор:** Hayko
+- **Статус:** Активен
+- **Особенности:** Полная реализация, крупнейший из добавленных сегодня шлюзов
+
+### WellbitGatewable (добавлен 2026-04-16)
+
+Добавлен шлюз **Wellbit** через стандартный интерфейс Gatewable.
+
+- **Тип:** Gateway (Gatewable)
+- **Статус:** Активен
+- Задача Jira: [INB-627] Залить шлюз Wellbit
+
+### FincoreGatewable + KredosGatewable (добавлены 2026-04-16)
+
+Добавлены два новых шлюза с ASGatewable-обёртками:
+
+- **FincoreGatewable** — Fincore payment gateway
+- **KredosGatewable** / **KredosASGatewable** — Kredos integration
+- **Тип:** Gateway + ASGatewable wrapper
+- **Статус:** Активны
+
+### InfinityV2Gatewable (добавлен 2026-04-16)
+
+Вторая версия интеграции Infinity (`app/Gateway/Infinity/InfinityV2Gatewable.php`).
+
+- Добавлен `client_id` в запросы
+- Добавлены required fields для корректной инициализации платежей
+- Расширяет `InfinityGatewable`
+
+### Обновления существующих шлюзов (2026-04-16)
+
+| Шлюз | Изменение |
+|------|-----------|
+| **Ikra / IkraGatewable** | Добавлена поддержка `crossBorderRequisiteType` и `crossBorderCurrency` |
+| **Finaxis** | Добавлено поле `utr` (UTR — Unique Transaction Reference) |
+| **GostexEcom** | Обновлён endpoint API для payment requests |
+| **KZT rate** | Исправлен курс KZT |

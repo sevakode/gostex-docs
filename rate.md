@@ -48,7 +48,44 @@ binancekaspi130-sell  → source=binancekaspi130, side=sell
 
 ---
 
-## 3. Ответ API
+## 3. Эндпоинты
+
+### GET /rate/relevant — все доступные пары и слаги
+
+Возвращает список всех актуальных валютных пар с курсами и доступными источниками (`source_exchanges` слагами).
+
+```
+GET /rate/relevant
+Authorization: Bearer <token>
+```
+
+Используй этот эндпоинт чтобы узнать какие слаги (`binance101215`, `rapira0.5`, `bybit200k` и др.) доступны прямо сейчас — список динамический и меняется.
+
+### GET /rate — получить курс
+
+```
+GET /rate?currency=RUB&second_currency=USDT&source_exchanges=rapira0.5&side=buy
+```
+
+| Параметр | Обязательный | Описание |
+|----------|-------------|----------|
+| `currency` | ✅ | Базовая валюта (напр. `RUB`) |
+| `second_currency` | ✅ | Котируемая валюта (напр. `USDT`) |
+| `side` | ✅ | `buy` или `sell` |
+| `source_exchanges` | — | Слаг источника курса. Если не передан — используется дефолтный |
+| `bank_or_payment_system` | — | Привязка к банку/шлюзу. `all_banks` если нет привязки |
+
+### PATCH /rate — установить курс вручную
+
+```
+PATCH /rate?currency=RUB&second_currency=USDT&source_exchanges=static-91.5&side=buy&rate=91.5
+```
+
+Устанавливает курс в Redis (для обоих направлений `buy`/`sell`).
+
+---
+
+## 4. Ответ API
 
 ```json
 {

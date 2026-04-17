@@ -394,3 +394,28 @@ PAYOUT_COOLDOWN_MINUTES=5
 ### Итог
 
 Job обработки статусов выплат переведён на OpenTelemetry, стал более устойчивым к ошибкам и несоответствиям данных. Retry-логика стала агрессивнее (1 сек интервал вместо 2).
+
+---
+
+## Hotfixes 2026-04-17
+
+### v1.24.24 — INB-612: Фикс расчёта суммы USDT в выгрузке трейдера
+
+**Проблема:** В кабинете трейдера при выгрузке при вычислении поля «Сумма USDT» не учитывался `disput_amount`.
+
+**Исправление:** Если у транзакции есть `disput_amount` — используется он, иначе берётся `amount`.
+
+```php
+// До:
+$usdtAmount = $amount / $rate;
+
+// После:
+$baseAmount = $payment->disput_amount ?? $payment->amount;
+$usdtAmount = $baseAmount / $rate;
+```
+
+### v1.24.23 — Transaction ID mismatch handling
+
+**Проблема:** `PayoutStatusCallbackJob` падал при несовпадении transaction ID от провайдера.
+
+**Исправление:** Добавлена явная обработка mismatch — логируется предупреждение, job продолжает выполнение.

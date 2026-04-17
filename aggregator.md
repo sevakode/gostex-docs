@@ -373,3 +373,28 @@ aggregator.register_gateway(gateway)
 | **Finaxis** | Добавлено поле `utr` (UTR — Unique Transaction Reference) |
 | **GostexEcom** | Обновлён endpoint API для payment requests |
 | **KZT rate** | Исправлен курс KZT |
+
+---
+
+## 14. Провайдеры — обновления 2026-04-17
+
+### RoyalFinanceV2Gatewable (добавлен 2026-04-17)
+
+Новый шлюз **RoyalFinance V2** (`app/Gateway/RoyalFinance/RoyalFinanceV2Gatewable.php`, 436 строк).
+
+- **Тип:** Payin (payout не поддерживается — `processPayout` возвращает null)
+- **Валюта:** из `method.currency`, по умолчанию RUB
+- **Geo:** параметр метода, по умолчанию `Россия`
+- **Параметры метода:** `paymentType` (обязательный), `bank` (опц.), `geo` (опц.)
+- **Тип платежа:** `to_card_number` по умолчанию или задаётся через `paymentType`
+- **Bank detect:** использует `BankDetecterService` для определения банка из ответа
+- **Авторизация:** API token (`apiToken`, required)
+
+### Обновления существующих шлюзов (2026-04-17)
+
+| Шлюз | Изменение |
+|------|-----------|
+| **GostexEcom** | Фикс OTP flow |
+| **Infinity** | Добавлен `client_id` в запросы |
+| **Finaxis** | Добавлено поле UTR |
+| **NSPK** | Фикс ссылки |

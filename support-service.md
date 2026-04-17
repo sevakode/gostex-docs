@@ -3,7 +3,7 @@
 > **Стек:** FastAPI + SQLAlchemy + Telegram (aiogram)
 > **Порт:** 8000
 > **Тип:** Опциональный (требует Aggregator)
-> **Последнее обновление:** 2026-04-17 (автосинк)
+> **Последнее обновление:** 2026-04-15 (автосинк)
 
 ---
 
@@ -90,23 +90,7 @@ Aggregator ──webhook──► Support Service ──Telegram API──► Ч
 
 ---
 
-## 8. Обсервабельность (OpenTelemetry)
-
-Добавлена полная observability-стека (опционально, в `otel-dev/`):
-
-| Компонент | Описание |
-|-----------|----------|
-| **Grafana Alloy** | Коллектор телеметрии/логов (`otel-dev/observability/alloy/config.alloy`) |
-| **Loki** | Агрегация логов (`otel-dev/observability/loki/loki.yaml`) |
-| **Prometheus** | Метрики (`otel-dev/observability/prometheus/prometheus.yml`) |
-| **Tempo** | Трейсы (`otel-dev/observability/tempo/tempo.yaml`) |
-| **Grafana** | Дашборды (datasources преднастроены) |
-
-Стекзапускается через `docker-compose.yml` (обновлён в commit `99feada`). Автор: Viktor P.
-
----
-
-## 9. Контакт
+## 8. Контакт
 
 Разработчик: Viktor P (`@gostex_viktor_p`)
 

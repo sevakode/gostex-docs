@@ -2,7 +2,7 @@
 
 > **Стек:** Laravel 12 / PHP 8.4 + PostgreSQL + Redis
 > **Репозиторий:** `aggregator/`
-> **Последнее обновление:** 2026-04-15 (автосинк)
+> **Последнее обновление:** 2026-04-17 (автосинк)
 
 ---
 
@@ -11,7 +11,7 @@
 AGGREpay Aggregator — ядро платёжной платформы. Принимает запросы от мерчантов, маршрутизирует через платёжных провайдеров (шлюзы), управляет каскадами, балансами, трейдерами, диспутами.
 
 **Ключевые цифры:**
-- 216+ платёжных шлюзов в `app/Gateway/`
+- 232+ платёжных шлюзов в `app/Gateway/`
 - Поддерживает payin, payout, withdrawal, conversion
 - Многоарендная архитектура (WL = отдельный инстанс)
 
@@ -57,7 +57,7 @@ AGGREpay Aggregator — ядро платёжной платформы. Прин
 
 | Директория | Назначение |
 |------------|------------|
-| `app/Gateway/` | 213+ интеграций с провайдерами |
+| `app/Gateway/` | 232+ интеграций с провайдерами |
 | `app/Gateway/Universal/` | Gateway Builder — JSON-конфигурируемые шлюзы |
 | `app/ReverseGateway/` | Reverse интеграции (входящие от провайдеров) |
 | `app/Models/` | Payment, Invoice, Merchant, Provider, Method, CascadeAttempt и др. |
@@ -373,3 +373,31 @@ aggregator.register_gateway(gateway)
 | **Finaxis** | Добавлено поле `utr` (UTR — Unique Transaction Reference) |
 | **GostexEcom** | Обновлён endpoint API для payment requests |
 | **KZT rate** | Исправлен курс KZT |
+
+---
+
+## 14. Провайдеры — обновления 2026-04-17
+
+### StarPagoGatewable (интегрирован 2026-04-17)
+
+Добавлен новый шлюз **StarPago** (`app/Gateway/StarPago/StarPagoGatewable.php`).
+
+- **Тип:** Gateway (Gatewable)
+- **Статус:** Активен
+- **Коммит:** `58cc7e3` integrated starpago
+
+### StblGatewable (добавлен 2026-04-17)
+
+Добавлен шлюз **Stbl** (`app/Gateway/Stbl/StblGatewable.php`) с BreakerRules.
+
+- **Тип:** Gateway (Gatewable + BreakerRules)
+- **Статус:** Активен
+- **Особенности:** Валидация BreakerRules, обработка payout + status handling
+- **Коммит:** `49c08a5`
+
+### Обновления существующих шлюзов (2026-04-17)
+
+| Шлюз | Изменение |
+|------|----------|
+| **VelloraGatewable** | Исправлен status map (commit `229c186`) |
+| **Mobius** | Добавлен mapping статусов (commit `9dae4a0`) |

@@ -2,7 +2,7 @@
 
 > **Стек:** Python
 > **Репо:** `rate/`
-> **Последнее обновление:** 2026-04-15 (автосинк)
+> **Последнее обновление:** 2026-04-17 (автосинк)
 
 ---
 
@@ -119,3 +119,12 @@ PATCH /rate?currency=RUB&second_currency=USDT&source_exchanges=static-91.5&side=
 - **Тип:** Static rate source (Binance)
 - **Добавлен:** Denis Python (r.denis@gostex.io)
 - **Ветка:** dev → main (MR !142)
+
+### bybit15 (добавлен 2026-04-17)
+
+Добавлен новый источник курса **bybit15**.
+
+- **Тип:** Bybit exchange со spread-множителем 1.025x (строки 0–5)
+- **Слаг в конфиге:** `bybit15`
+- **Добавлен:** r.denis (`r.denis@gostex.io`)
+- **Ветка:** dev → main (commit `d2198f8`)

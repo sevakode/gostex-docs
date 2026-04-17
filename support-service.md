@@ -94,29 +94,3 @@ Aggregator ──webhook──► Support Service ──Telegram API──► Ч
 
 Разработчик: Viktor P (`@gostex_viktor_p`)
 
-
----
-
-## 9. OpenTelemetry (добавлено 2026-04-17)
-
-Support Service переведён на OpenTelemetry для distributed tracing и structured logging.
-
-### Модуль `support/util/telemetry.py`
-
-- `get_current_trace_context()` — возвращает `(trace_id, span_id)` текущего span
-- `TraceContextFilter` — добавляет `trace_id` и `span_id` в каждую лог-запись
-- `configure_otel_logging()` — настраивает OTLP Log Exporter (HTTP)
-- Логи отправляются в OTLP endpoint через `BatchLogRecordProcessor`
-
-### Конфиг (env)
-
-| Переменная | Описание |
-|-----------|---------|
-| `OTEL_SERVICE_NAME` | Имя сервиса в трейсах |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | URL OTLP collector |
-| `OTEL_DEPLOYMENT_ENVIRONMENT` | Среда (`prod`, `dev`) |
-
-### Что удалено
-
-- `dev-deploy-config/prometheus.yml` — конфиг Prometheus (заменён OTEL)
-- `dev-deploy-config/tempo.yaml` — конфиг Tempo (заменён OTEL)

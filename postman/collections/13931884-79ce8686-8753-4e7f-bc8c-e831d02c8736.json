@@ -706,7 +706,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"amount\": 1000,\n    \"address\": \"1234432112344321\",\n    \"method\": \"c2c\",\n    \"currency\": \"RUB\",\n    \"recipient\": \"TEST TESTOVICH\",\n    \"assetOrBank\": \"sber\",\n    \"orderId\": \"test22t2e2st\",\n    \"merchantId\": \"k3lhwhmxue0p650hs6doub4k\",\n    \"callbackUri\": \"https://callback.xyz/callback/fin-pay\"\n}",
+									"raw": "{\n    \"amount\": 1000,\n    \"address\": \"1234432112344321\",\n    \"method\": \"c2c\",\n    \"currency\": \"RUB\",\n    \"recipient\": \"TEST TESTOVICH\",\n    \"assetOrBank\": \"sber\",\n    \"orderId\": \"test22t2e2st\",\n    \"merchantId\": \"k3lhwhmxue0p650hs6doub4k\",\n    \"callbackUri\": \"https://callback.xyz/callback/fin-pay\",\n    \"userId\": \"u-4095\",\n    \"userIp\": \"188.11.55.10\",\n    \"contactPhone\": \"79031234567\",\n    \"email\": \"client@example.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"

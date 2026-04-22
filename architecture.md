@@ -174,7 +174,7 @@ flowchart TB
 ```
 aggregator/
 ├── app/
-│   ├── Gateway/           # 197+ провайдеров (Trade, Wirecore, Infinity, etc.)
+│   ├── Gateway/           # Провайдеры (полный список в docs/gateways.csv)
 │   │   └── Universal/     # Gateway Builder (UniversalGateway, TemplateEngine, SignatureGenerator)
 │   ├── Http/Controllers/
 │   │   ├── Api/           # Merchant API v1/v2

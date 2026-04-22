@@ -6,7 +6,7 @@
 
 ## Обзор
 
-Gateway Builder позволяет владельцам WL создавать и настраивать интеграции с платёжными провайдерами из админ-панели. Вместо PHP-класса (как для 197+ существующих шлюзов), конфигурация описывается в JSON-шаблоне (`GatewayTemplate`), который интерпретируется в рантайме классом `UniversalGateway`.
+Gateway Builder позволяет владельцам WL создавать и настраивать интеграции с платёжными провайдерами из админ-панели. Вместо PHP-класса (как для существующих шлюзов), конфигурация описывается в JSON-шаблоне (`GatewayTemplate`), который интерпретируется в рантайме классом `UniversalGateway`.
 
 Основные возможности:
 
@@ -76,7 +76,7 @@ src/components/gateway-builder/
 
 # Данные
 aggregator/storage/app/gateway-builder/
-├── dynamic-context.json      — 196 проанализированных паттернов шлюзов
+├── dynamic-context.json      — проанализированные паттерны шлюзов
 └── import-templates.json     — готовые импортируемые шаблоны
 ```
 
@@ -620,7 +620,7 @@ Settings → AI Assistant в админ-панели:
 
 Файл `storage/app/gateway-builder/dynamic-context.json` содержит:
 
-- 196 проанализированных паттернов из реальных PHP-шлюзов
+- Проанализированные паттерны из реальных PHP-шлюзов
 - Паттерны подписей с примерами алгоритмов
 - Чек-листы отладки (signature errors, connection errors, mapping errors)
 - Паттерны response mapping и status mapping

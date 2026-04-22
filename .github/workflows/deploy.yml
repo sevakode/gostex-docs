@@ -31,12 +31,12 @@ jobs:
 
       - name: Build docs
         run: |
-          mkdocs build --config-file mkdocs.yml --site-dir site
+          mkdocs build --config-file mkdocs.yml --site-dir /tmp/site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: /tmp/site
 
   deploy:
     needs: build

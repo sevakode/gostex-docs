@@ -2,7 +2,7 @@ site_name: Gostex Platform Docs
 site_description: Документация платформы AGGREpay / Gostex PSP
 site_url: https://docs.gostex.io
 docs_dir: .
-site_dir: /tmp/mkdocs-site
+site_dir: /tmp/gostex-docs-site
 
 theme:
   name: material

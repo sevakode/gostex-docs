@@ -1,0 +1,113 @@
+site_name: Gostex Platform Docs
+site_description: Документация платформы AGGREpay / Gostex PSP
+site_url: https://docs.gostex.io
+docs_dir: .
+site_dir: /tmp/mkdocs-site
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Тёмная тема
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Светлая тема
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+
+# edit_uri: https://github.com/gostex-io/docs/edit/main/  # раскомментировать после создания репо на GitHub
+
+plugins:
+  - search:
+      lang: ru
+  - glightbox
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: На этой странице
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Главная: README.md
+
+  - 🧭 Для саппорта:
+    - Быстрый старт: for-support.md
+    - Статусы транзакций: transaction-statuses.md
+    - F.A.Q.: faq.md
+    - Глоссарий: ai/glossary.md
+    - Клиенты и WL: clients.md
+    - Автоматика SMS: automation-sms.md
+    - Трейдерская панель: ops/trader-admin-guide.md
+    - Админ-панель (agradmin): agradmin.md
+
+  - 👨‍💻 Для разработчиков:
+    - Быстрый старт: for-devs.md
+    - Архитектура: architecture.md
+    - Агрегатор (API): aggregator.md
+    - Flow (платёжная страница): flow.md
+    - Frontend: frontend.md
+    - Rate Service: rate.md
+    - Support Service: support-service.md
+    - InternalTrade: trade.md
+    - Статусы транзакций: transaction-statuses.md
+    - В разработке:
+      - Gateway Builder: dev-in-progress/gateway-builder.md
+      - Кабинет мерчанта: dev-in-progress/merchant-cabinet.md
+      - Agent Cabinet API: dev-in-progress/agent-cabinet-api.md
+
+  - 🔧 Операции:
+    - Деплой: deployment.md
+    - Трейдерская панель: ops/trader-admin-guide.md
+
+  - 📚 Справочники:
+    - Список провайдеров: gateways.csv
+    - Глоссарий: ai/glossary.md
+    - AI Knowledge Base: ai/README.md
+    - Оглавление: table-of-contents.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.gostex-tech.com
+  generator: false
+
+extra_css:
+  - assets/extra.css

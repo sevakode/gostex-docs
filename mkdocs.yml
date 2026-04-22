@@ -37,7 +37,9 @@ theme:
     - content.code.annotate
     - toc.follow
 
-# edit_uri: https://github.com/gostex-io/docs/edit/main/  # раскомментировать после создания репо на GitHub
+repo_url: https://github.com/sevakode/gostex-docs
+repo_name: gostex-docs
+edit_uri: edit/main/
 
 plugins:
   - search:

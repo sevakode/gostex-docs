@@ -4,7 +4,6 @@
 >
 > - [🔄 Trade Service](./ai/trade-service.md) — P2P процессинг
 > - [📡 API Reference (Postman)](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) — API документация
-> - [🔧 Troubleshooting](./ai/troubleshooting.md) — Решение проблем
 > - [📖 Glossary](./ai/glossary.md) — Глоссарий терминов
 
 ---

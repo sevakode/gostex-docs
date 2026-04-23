@@ -112,7 +112,7 @@ PHP-класс провайдера в Aggregator, реализующий инт
 Интерфейс для провайдеров: createInvoice, handleCallback, getStatus, processPayout, etc.
 
 ### Gateway Builder
-Конструктор платёжных шлюзов через JSON-конфигурацию, без PHP-кода. Позволяет создавать payin/payout интеграции из админ-панели. Включает API-тестер, AI-ассистент, Monaco Editor, импорт/экспорт. См. [gateway-builder.md](../gateway-builder.md).
+Конструктор платёжных шлюзов через JSON-конфигурацию, без PHP-кода. Позволяет создавать payin/payout интеграции из админ-панели. Включает API-тестер, AI-ассистент, Monaco Editor, импорт/экспорт. См. [gateway-builder.md](../dev-in-progress/gateway-builder.md).
 
 ### GatewayTemplate
 Модель JSON-шаблона шлюза в PostgreSQL. Содержит секции: credential_schema, create_invoice, create_payout, handle_callback, get_status, set_status, get_balance, method_params_schema, requisite_chain, authentication.

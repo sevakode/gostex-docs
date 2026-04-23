@@ -1,6 +1,6 @@
 site_name: Gostex Platform Docs
 site_description: Документация платформы AGGREpay / Gostex PSP
-site_url: https://docs.gostex.io
+site_url: https://sevakode.github.io/gostex-docs/
 docs_dir: .
 site_dir: /tmp/gostex-docs-site
 
@@ -96,14 +96,12 @@ nav:
       - Agent Cabinet API: dev-in-progress/agent-cabinet-api.md
 
   - 🔧 Операции:
-    - Деплой: deployment.md
     - Трейдерская панель: ops/trader-admin-guide.md
 
   - 📚 Справочники:
     - Список провайдеров: gateways.csv
     - Глоссарий: ai/glossary.md
     - AI Knowledge Base: ai/README.md
-    - Оглавление: table-of-contents.md
 
 extra:
   social:

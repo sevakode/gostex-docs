@@ -10,7 +10,7 @@
 |----------|---------------|
 | Платёж завис, не меняет статус | [Статусы транзакций](transaction-statuses.md) |
 | Мерчант говорит "не пришёл callback" | [Коллбэк мерчанту](transaction-statuses.md#коллбэк-мерчанту) |
-| Платёж в статусе `in_check` | [Статус in_check](transaction-statuses.md#in_check) |
+| Платёж в статусе `in_check` | [Статус in_check](transaction-statuses.md#при-in_check) |
 | Нужно найти платёж по ID | [Где смотреть статус](transaction-statuses.md#где-смотреть-статус) |
 | Вопросы по сумме, комиссии | [Поля коллбэка](transaction-statuses.md#описание-полей) |
 

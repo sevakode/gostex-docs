@@ -2,7 +2,7 @@
 
 > **Связанная документация:**
 >
-> - [🔄 Trade Service](./ai/trade-service.md) — P2P процессинг
+> - [🔄 Trade Service](./trade.md) — P2P процессинг
 > - [📡 API Reference (Postman)](https://documenter.getpostman.com/view/13931884/2sAYQdipUu) — API документация
 > - [📖 Glossary](./ai/glossary.md) — Глоссарий терминов
 

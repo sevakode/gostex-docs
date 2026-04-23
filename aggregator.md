@@ -388,3 +388,23 @@ aggregator.register_gateway(gateway)
 | **Finaxis** | Добавлено поле `utr` (UTR — Unique Transaction Reference) |
 | **GostexEcom** | Обновлён endpoint API для payment requests |
 | **KZT rate** | Исправлен курс KZT |
+
+### Поля ответа `/api/v2/payment/status`
+
+Ответ содержит поля платежа и реквизиты инвойса:
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | string | Внутренний `order_id` платежа |
+| `status` | bool | `true` = оплачено |
+| `state` | string | Текстовый статус (`finished`, `canceled`, `expired`, `in_check`) |
+| `type` | string | `payin` или `payout` |
+| `amount` | string | Сумма транзакции |
+| `currency` | string | Валюта |
+| `rate` | float | Курс USDT |
+| `sender_bank` | string | Банк отправителя (если определён) |
+| `requisites.address` | string | Реквизиты получателя (номер карты, телефон, счёт) |
+| `requisites.recipient` | string | Имя получателя |
+| `requisites.bank` | string | Банк получателя (`bank_name` инвойса) |
+
+> **Примечание:** поля с `null` значением автоматически исключаются из ответа.
